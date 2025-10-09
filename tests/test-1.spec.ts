@@ -100,11 +100,17 @@ test.describe('Тесты главной страницы', () => {
     await page.goto('https://playwright.dev/');
   });
   test('Проверка отображения элементов навигации хедера', async ({ page }) => {
-    elements.forEach(({ locator, name }) => {
-      test.step(`Проверка отображения элементов ${name}`, async () => {
+    for (const { locator, name } of elements) {
+      await test.step(`Проверка отображения элемента ${name}`, async () => {
         await expect(locator(page)).toBeVisible();
       });
-    });
+    }
+    // forEach ЗАЛУПА для ассинхрона надо рефакторить тесты ниже
+    // elements.forEach(({ locator, name }) => {
+    //   test.step(`Проверка отображения элементов ${name}`, async () => {
+    //     await expect(locator(page)).toBeVisible();
+    //   });
+    // });
   });
 
   test('Проверка названий элементов навигации хедера', async ({ page }) => {

@@ -114,23 +114,38 @@ test.describe('Тесты главной страницы', () => {
   });
 
   test('Проверка названий элементов навигации хедера', async ({ page }) => {
-    elements.forEach(({ locator, name, text }) => {
+    for (const { locator, name, text } of elements) {
       if (text) {
-        test.step(`Проверка названия элемента ${name}`, async () => {
+        await test.step(`Проверка названия элемента ${name}`, async () => {
           await expect(locator(page)).toContainText(text);
         });
       }
-    });
+    }
+    // elements.forEach(({ locator, name, text }) => {
+    //   if (text) {
+    //     test.step(`Проверка названия элемента ${name}`, async () => {
+    //       await expect(locator(page)).toContainText(text);
+    //     });
+    //   }
+    // });
   });
 
   test('Проверка атрибута href элементов навигации хедера', async ({ page }) => {
-    elements.forEach(({ locator, name, attribute }) => {
+    for (const { locator, name, attribute } of elements) {
       if (attribute) {
-        test.step(`Проверка атрибутов href элемента ${name}`, async () => {
+        await test.step(`Проверка атрибутов href элемента ${name}`, async () => {
           await expect(locator(page)).toHaveAttribute(attribute?.type, attribute?.value);
         });
       }
-    });
+    }
+
+    // elements.forEach(({ locator, name, attribute }) => {
+    //   if (attribute) {
+    //     test.step(`Проверка атрибутов href элемента ${name}`, async () => {
+    //       await expect(locator(page)).toHaveAttribute(attribute?.type, attribute?.value);
+    //     });
+    //   }
+    // });
   });
 
   test('Проверка атрибута переключения light мода', async ({ page }) => {

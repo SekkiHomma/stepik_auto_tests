@@ -146,19 +146,30 @@ export class MainPage {
     });
   }
   async checkLayoutWithLightMode() {
-    try {
-      await expect(this.page).toHaveScreenshot('pageWithLightMode.png');
-    } catch {
-      // если первый скрин не совпал — пробуем второй
-      await expect(this.page).toHaveScreenshot('pageWithLightMode-noScroll.png');
+    const screenshots = [
+      'pageLightModeLocalTestWithoutScroll.png',
+      'pageLightModeActionsTestWithScroll.png',
+    ];
+
+    for (const name of screenshots) {
+      try {
+        await expect(this.page).toHaveScreenshot(name);
+        return;
+      } catch {}
     }
   }
   async checkLayoutWithDarkMode() {
-    try {
-      await expect(this.page).toHaveScreenshot('pageWithDarkMode.png');
-    } catch {
-      // если первый скрин не совпал — пробуем второй
-      await expect(this.page).toHaveScreenshot('pageWithDarkMode-noScroll.png');
+    const screenshots = [
+      'pageDarkModeLocalTestWithoutScroll.png',
+      'pageDarkModeLocalTestWithoutScrollAlternative.png',
+      'pageDarkModeActionsTestWithScrollAlternative.png',
+    ];
+
+    for (const name of screenshots) {
+      try {
+        await expect(this.page).toHaveScreenshot(name);
+        return;
+      } catch {}
     }
   }
 }

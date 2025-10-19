@@ -150,7 +150,7 @@ export class MainPage {
       await expect(this.page).toHaveScreenshot('pageWithLightMode.png');
     } catch {
       // если первый скрин не совпал — пробуем второй
-      await expect(this.page).toHaveScreenshot('pageWithLightMode_noScroll.png');
+      await expect(this.page).toHaveScreenshot('pageWithLightMode-noScroll.png');
     }
   }
   async checkLayoutWithDarkMode() {
@@ -158,7 +158,7 @@ export class MainPage {
       await expect(this.page).toHaveScreenshot('pageWithDarkMode.png');
     } catch {
       // если первый скрин не совпал — пробуем второй
-      await expect(this.page).toHaveScreenshot('pageWithDarkMode_noScroll.png');
+      await expect(this.page).toHaveScreenshot('pageWithDarkMode-noScroll.png');
     }
   }
 }

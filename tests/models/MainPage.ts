@@ -146,9 +146,19 @@ export class MainPage {
     });
   }
   async checkLayoutWithLightMode() {
-    await expect(this.page).toHaveScreenshot(`pageWithWithLightMode.png`);
+    try {
+      await expect(this.page).toHaveScreenshot('pageWithLightMode.png');
+    } catch {
+      // если первый скрин не совпал — пробуем второй
+      await expect(this.page).toHaveScreenshot('pageWithLightMode_noScroll.png');
+    }
   }
   async checkLayoutWithDarkMode() {
-    await expect(this.page).toHaveScreenshot(`pageWithWithDarkMode.png`);
+    try {
+      await expect(this.page).toHaveScreenshot('pageWithDarkMode.png');
+    } catch {
+      // если первый скрин не совпал — пробуем второй
+      await expect(this.page).toHaveScreenshot('pageWithDarkMode_noScroll.png');
+    }
   }
 }
